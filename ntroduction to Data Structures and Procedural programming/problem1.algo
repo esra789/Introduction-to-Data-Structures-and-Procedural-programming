@@ -1,0 +1,35 @@
+ program SumOfDistinctElements;
+ type
+  IntegerArray = array of integer;
+ function SumOfDistinctElements(arr1, arr2: IntegerArray): integer;
+ var
+  distinctSet: set of integer;
+  element: integer;
+ begin
+  Result := 0;
+  for element in arr1 do
+  begin
+    if not (element in distinctSet) then
+    begin
+      Include(distinctSet, element);
+      Result := Result + element;
+    end;
+  end;
+  for element in arr2 do
+  begin
+    if not (element in distinctSet) then
+    begin
+      Include(distinctSet, element);     
+      Result := Result + element;
+    end;
+  end;
+ end;
+ var
+  set1, set2: IntegerArray;
+  result: integer;
+ begin
+  set1 := [3, 1, 7, 9];
+  set2 := [2, 4, 1, 9, 3];
+  result := SumOfDistinctElements(set1, set2);
+  WriteLn(Sum of distinct elements:, result);
+ end.

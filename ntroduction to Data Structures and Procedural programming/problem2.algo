@@ -1,0 +1,49 @@
+ program OrthogonalVectors;
+ type
+  RealArray = array of real;
+
+ function DotProduct(v1, v2: RealArray): real;
+ var
+  i: integer;
+  result: real;
+ begin
+  result := 0.0;
+  if Length(v1) <> Length(v2) then
+    result := -1.0 
+  else
+  begin
+    for i := 0 to High(v1) do
+      result := result + v1[i] * v2[i];
+  end;
+  DotProduct := result;
+ end;
+ function AreOrthogonal(v1, v2: RealArray): boolean;
+ var
+  dot: real;
+ begin
+  dot := DotProduct(v1, v2);
+  AreOrthogonal := Abs(dot) < 0.0001;
+ end;
+
+ var
+  v1, v2: RealArray;
+  isOrthogonal: boolean;
+
+ begin
+  SetLength(v1, 3);
+  v1[0] := 1.0;
+  v1[1] := 0.0;
+  v1[2] := 0.0;
+
+  SetLength(v2, 3);
+  v2[0] := 0.0;
+  v2[1] := 1.0;
+  v2[2] := 0.0;
+
+  isOrthogonal := AreOrthogonal(v1, v2);
+
+  if isOrthogonal then
+    WriteLn(The vectors are orthogonal.)
+  else
+    WriteLn(The vectors are not orthogonal.);
+ end.
